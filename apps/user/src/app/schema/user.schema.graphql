@@ -1,0 +1,21 @@
+enum ContactType {
+  PHONE
+  EMAIL
+  ADDRESS
+}
+
+
+type User @key(fields: "id") {
+  id: ID!
+  userName: String!
+  contact: [Contact]
+}
+
+type Contact {
+    type: ContactType
+    value: String!
+}
+
+extend type Query {
+  getUser(id: ID!): User
+}
