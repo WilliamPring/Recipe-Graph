@@ -16,6 +16,11 @@ export class UserResolvers {
     return this.userService.create(input)
   }
 
+  @Mutation()
+  async updateUser(@Args('input') input: UserDto) {
+    return this.userService.update(input);
+  }
+
   // @ResolveReference()
   // resolveReference(reference: { __typename: string; id: string }) {
   //   return this.usersService.findById(reference.id);

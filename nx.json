@@ -27,6 +27,9 @@
     },
     "configurations": {
       "tags": []
+    },
+    "recipe": {
+      "tags": []
     }
   }
 }

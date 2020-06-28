@@ -91,8 +91,9 @@
       "schematics": {},
       "architect": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:lint",
           "options": {
+            "linter": "eslint",
             "tsConfig": [
               "libs/configurations/tsconfig.lib.json",
               "libs/configurations/tsconfig.spec.json"
@@ -105,6 +106,62 @@
           "options": {
             "jestConfig": "libs/configurations/jest.config.js",
             "tsConfig": "libs/configurations/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "recipe": {
+      "root": "apps/recipe",
+      "sourceRoot": "apps/recipe/src",
+      "projectType": "application",
+      "prefix": "recipe",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/recipe",
+            "main": "apps/recipe/src/main.ts",
+            "tsConfig": "apps/recipe/tsconfig.app.json",
+            "assets": ["apps/recipe/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/recipe/src/environments/environment.ts",
+                  "with": "apps/recipe/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "recipe:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "apps/recipe/tsconfig.app.json",
+              "apps/recipe/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/recipe/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/recipe/jest.config.js",
+            "tsConfig": "apps/recipe/tsconfig.spec.json",
             "passWithNoTests": true
           }
         }

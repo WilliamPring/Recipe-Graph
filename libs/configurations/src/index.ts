@@ -1,1 +1,1 @@
-export * from './lib/configurations.module';
+export * from './lib/configurations';
