@@ -12,11 +12,7 @@ export class UserService {
   ) {}
 
   create(createUserDto: UserDto): Promise<User> {
-    const user = new User();
-    user.userName = createUserDto.userName;
-    user.contact = createUserDto.contact;
-
-    return this.usersRepository.save(user);
+    return this.usersRepository.save({...createUserDto});
   }
 
   async findAll(): Promise<User[]> {

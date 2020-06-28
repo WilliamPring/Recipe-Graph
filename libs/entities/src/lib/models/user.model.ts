@@ -10,5 +10,5 @@ export class User {
     userName: string;
 
     @Column()
-    contact: Contact
+    contact: Array<Contact>
 }

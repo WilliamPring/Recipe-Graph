@@ -18,5 +18,18 @@ type Contact {
 }
 
 extend type Query {
-  getUser(id: String!): User
+  getUser(id: ID!): User
+}
+
+input ContactInput {
+  type: ContactType!
+  value: String!
+}
+input UserInput {
+  userName: String!
+  contact: [ContactInput]
+}
+
+extend type Mutation {
+  createUser(input: UserInput!) : User
 }
