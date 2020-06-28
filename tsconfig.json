@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@recipe-graph/entities": ["libs/entities/src/index.ts"]
+      "@recipe-graph/entities": ["libs/entities/src/index.ts"],
+      "@recipe-graph/configurations": ["libs/configurations/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

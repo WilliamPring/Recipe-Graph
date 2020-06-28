@@ -24,6 +24,9 @@
     },
     "entities": {
       "tags": []
+    },
+    "configurations": {
+      "tags": []
     }
   }
 }
