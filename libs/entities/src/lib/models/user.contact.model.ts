@@ -1,4 +1,3 @@
-import { Entity, Column  } from "typeorm"
 
 
 export class Contact {
