@@ -1,7 +1,8 @@
 
 import { Args, Query, Resolver, ResolveReference, Mutation } from '@nestjs/graphql';
 // import { UsersService } from '../users.service';
-import {UserService, UserDto} from '@recipe-graph/entities'
+import {UserService} from '@recipe-graph/entities'
+import { UserDto } from '@recipe-graph/transfer-object';
 @Resolver('User')
 export class UserResolvers {
   constructor(private userService: UserService) {}
