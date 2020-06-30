@@ -1,4 +1,5 @@
 scalar JSON
+
 enum ContactType {
   PHONE
   EMAIL
@@ -19,6 +20,7 @@ type Contact {
 
 extend type Query {
   getUser(id: ID!): User
+  getUsers(where: JSON, order: JSON, limit: Int, offset:Int): [User]
 }
 
 input ContactInput {

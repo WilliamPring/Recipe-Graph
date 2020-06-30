@@ -1,8 +1,9 @@
-import { ObjectID, Entity, Column, ObjectIdColumn } from "typeorm"
+import { ObjectID, Entity, Column, PrimaryColumn, ObjectIdColumn } from "typeorm"
 import {Contact} from './user.contact.model'
 
 @Entity({name: "user"})
 export class User {
+    @PrimaryColumn({type: "string"})
     @ObjectIdColumn()
     id: ObjectID
 

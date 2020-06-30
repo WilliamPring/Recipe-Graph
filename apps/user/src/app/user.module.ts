@@ -5,6 +5,6 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import { DateScalar } from "@recipe-graph/configurations";
 @Module({
     imports: [TypeOrmModule.forFeature([User])],
-    providers: [UserService, UserResolvers]
+    providers: [UserService, UserResolvers, DateScalar]
 })
 export class UserModule {}

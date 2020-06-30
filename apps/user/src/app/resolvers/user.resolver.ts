@@ -11,6 +11,15 @@ export class UserResolvers {
     return this.userService.findOne(id);
   }
 
+
+  @Query()
+  getUsers(@Args('where') where: {}, @Args('order') order:{}, @Args('limit') limit: number, @Args('offset') offset: number) {
+    const data = this.userService.find(where, order, limit, offset);
+    console.log(data)
+    return data;
+  }
+
+
   @Mutation()
   async createUser(@Args('input') input: UserDto) {
     return this.userService.create(input)
