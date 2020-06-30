@@ -4,9 +4,10 @@ import {GraphQLJSON } from 'graphql-type-json';
 import { Connection } from 'typeorm';
 import {UserProvider} from '@recipe-graph/crud-layer'
 import {UserResolvers} from './resolvers/user.resolver'
+import * as config  from 'config'
 @Module({
   imports: [
-    UserProvider.register(),
+    UserProvider.register(config.get('Configuration')),
     GraphQLFederationModule.forRoot({
       typePaths: ['./**/*.graphql'],
       resolvers: { JSON: GraphQLJSON }
