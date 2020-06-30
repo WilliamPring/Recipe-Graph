@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserDto } from '@recipe-graph/transfer-object';
+import { UserDto, CreateUserDto, UpdateUserDto } from '@recipe-graph/transfer-object';
 import { User } from '@recipe-graph/entities';
-
+import { map } from 'lodash';
 @Injectable()
 export class UserService {
   constructor(
@@ -11,22 +11,29 @@ export class UserService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  async create(createUserDto: UserDto): Promise<User> {
-    return this.usersRepository.save({...createUserDto});
+
+  dtoMapper = (entity: User): UserDto => {
+    const { id, ...rest } = entity;
+    return {
+      id,
+      ...rest
+    };
+  };
+
+  async create(createUserDto: CreateUserDto): Promise<UserDto> {
+    return this.usersRepository.save({...createUserDto}).then(this.dtoMapper);
   }
 
-  findOne(id: string): Promise<User> {
-    return this.usersRepository.findOne(id);
+  findOne(id: string): Promise<UserDto> {
+    return this.usersRepository.findOne(id).then(this.dtoMapper);
   }
-  async find(where: {}, order: {}, limit: number, offset: number): Promise<User[]> {
-    const data = await this.usersRepository.find({where: {...where}, order: {...order}, take: limit, skip: offset});
-    console.log(data)
-    return data
+  async find(where: {}, order: {}, limit: number, offset: number): Promise<UserDto[]> {
+    return await this.usersRepository.find({where: {...where}, order: {...order}, take: limit, skip: offset})
+    .then(res => map(res, this.dtoMapper));
   }
-  async update(updateUserDto: UserDto): Promise<User> {
-    const user = await this.usersRepository.update(updateUserDto.id, updateUserDto)
-    console.log(user)
-    return this.usersRepository.findOne(updateUserDto.id);
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<UserDto> {
+    await this.usersRepository.update(id, updateUserDto)
+    return this.usersRepository.findOne(id).then(this.dtoMapper);
   }
 
   async remove(id: string): Promise<void> {

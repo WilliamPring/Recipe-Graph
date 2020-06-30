@@ -37,6 +37,7 @@
     "graphql": "^15.1.0",
     "graphql-tools": "^6.0.11",
     "graphql-type-json": "^0.3.2",
+    "lodash": "^4.17.15",
     "mongodb": "^3.5.9",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.25"
