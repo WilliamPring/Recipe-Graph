@@ -1,3 +1,1 @@
-export function configurations(): string {
-  return 'configurations';
-}
+export { DateScalar } from './common/scalars';
