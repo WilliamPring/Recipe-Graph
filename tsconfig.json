@@ -18,7 +18,8 @@
     "paths": {
       "@recipe-graph/entities": ["libs/entities/src/index.ts"],
       "@recipe-graph/configurations": ["libs/configurations/src/index.ts"],
-      "@recipe-graph/transfer-object": ["libs/transfer-object/src/index.ts"]
+      "@recipe-graph/transfer-object": ["libs/transfer-object/src/index.ts"],
+      "@recipe-graph/crud-layer": ["libs/crud-layer/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

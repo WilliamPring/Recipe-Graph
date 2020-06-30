@@ -28,12 +28,11 @@ input ContactInput {
   value: String!
 }
 input UserInput {
-  id: ID
   userName: String!
   contact: [ContactInput]
 }
 
 extend type Mutation {
   createUser(input: UserInput!) : User
-  updateUser(input: UserInput!) : User
+  updateUser(id: ID! input: UserInput!) : User
 }

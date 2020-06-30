@@ -33,6 +33,9 @@
     },
     "transfer-object": {
       "tags": []
+    },
+    "crud-layer": {
+      "tags": []
     }
   }
 }

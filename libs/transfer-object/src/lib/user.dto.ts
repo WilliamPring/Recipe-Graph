@@ -6,6 +6,16 @@ export interface UserDto {
     contact: Array<ContactDto>
 }
 
+export interface UpdateUserDto {
+  userName: string;
+  contact: Array<ContactDto>
+}
+
+export interface CreateUserDto {
+  userName: string;
+  contact: Array<ContactDto>
+}
+
 export interface ContactDto {
   type: string
   value: string;

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserDto, CreateUserDto } from '@recipe-graph/transfer-object';
-import { User } from '../models/user.model';
+import { UserDto } from '@recipe-graph/transfer-object';
+import { User } from '@recipe-graph/entities';
 
 @Injectable()
 export class UserService {
@@ -11,7 +11,7 @@ export class UserService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: UserDto): Promise<User> {
     return this.usersRepository.save({...createUserDto});
   }
 
