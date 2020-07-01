@@ -9,7 +9,7 @@ import * as config  from 'config'
   imports: [
     RecipeProvider.register(config.get('Configuration')),
     GraphQLFederationModule.forRoot({
-      typePaths: ['**/*.graphql'],
+      typePaths: ['./**/recipe.schema.graphql'],
       resolvers: { JSON: GraphQLJSON }
     }),
   ],

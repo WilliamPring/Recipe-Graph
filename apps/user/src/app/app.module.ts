@@ -9,7 +9,7 @@ import * as config  from 'config'
   imports: [
     UserProvider.register(config.get('Configuration')),
     GraphQLFederationModule.forRoot({
-      typePaths: ['**/*.graphql'],
+      typePaths: ['./**/user.schema.graphql'],
       resolvers: { JSON: GraphQLJSON }
     }),
   ],
