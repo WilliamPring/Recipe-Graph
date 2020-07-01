@@ -1,0 +1,68 @@
+scalar JSON
+scalar Date
+enum TimeUnits {
+  YEAR,
+  MONTH,
+  WEEK,
+  DAYS,
+  HOURS,
+  MINUTES,
+  SECONDS
+}
+type Receipe @key(fields: "id") {
+  id: ID!
+  parent: ID
+  createDate: Date!
+  lastModifiedDate: Date!
+  userName: String!
+  url: String
+  about: About
+  ingredients: [Ingredient]
+  instructions: [Instruction]
+}
+
+type About {
+    prepTime(unit: TimeUnits = HOURS): Float
+    cookTime: Float
+    totalTime: Float
+    yield: Float
+}
+type Ingredient {
+    quantity: Float!
+    value: String!
+}
+type Instruction {
+  step: Float!
+  description: String!
+}
+
+input ReceipeInput {
+  parent: ID
+  createDate: Date!
+  lastModifiedDate: Date!
+  userName: String!
+  url: String
+  about: AboutInput
+  ingredients: [IngredientInput]
+  instructions: [InstructionInput]
+}
+
+input AboutInput {
+    prepTime: Float
+    cookTime: Float
+    totalTime: Float
+    yield: Float
+}
+
+input IngredientInput {
+    quantity: Float!
+    value: String!
+}
+input InstructionInput {
+  step: Float!
+  description: String!
+}
+
+type Mutation {
+  createRecipe(input: ReceipeInput!) : Receipe
+}

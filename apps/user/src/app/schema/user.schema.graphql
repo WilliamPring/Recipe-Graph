@@ -6,7 +6,6 @@ enum ContactType {
   ADDRESS
 }
 
-
 type User @key(fields: "id") {
   id: ID!
   userName: String!

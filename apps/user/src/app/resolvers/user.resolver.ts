@@ -30,8 +30,8 @@ export class UserResolvers {
     return this.userService.update(id, input);
   }
 
-  // @ResolveReference()
-  // resolveReference(reference: { __typename: string; id: string }) {
-  //   return this.usersService.findById(reference.id);
-  // }
+  @ResolveReference()
+  resolveReference(reference: { __typename: string; userName: string }) : Promise<UserDto> {
+    return this.userService.findbyUserName(reference.userName);
+  }
 }

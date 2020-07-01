@@ -39,4 +39,8 @@ export class UserService {
   async remove(id: string): Promise<void> {
     await this.usersRepository.delete(id);
   }
+
+  findbyUserName(userName: string): Promise<UserDto> {
+    return this.usersRepository.findOne(userName).then(this.dtoMapper);
+  }
 }
