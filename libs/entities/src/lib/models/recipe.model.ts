@@ -1,13 +1,12 @@
 import { ObjectID, Entity, Column, ObjectIdColumn } from "typeorm"
-import {Ingredients, About} from '..'
 
 @Entity({name: "receipe"})
 export class Receipe {
     @ObjectIdColumn()
     id: ObjectID
 
-    @Column({type: "string"})
-    parent: string
+    @Column()
+    parent: ObjectID
 
     @Column({type: "date"})
     createDate: Date
@@ -23,4 +22,17 @@ export class Receipe {
 
     @Column()
     ingredients: Array<Ingredients>
+}
+
+
+export class About {
+    prepTime!: number
+    cookTime!: number
+    totalTime!: number
+    yield: number
+}
+
+export class Ingredients {
+    value!: string;
+    quantity!: number
 }

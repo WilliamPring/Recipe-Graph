@@ -36,6 +36,9 @@
     },
     "crud-layer": {
       "tags": []
+    },
+    "gateway": {
+      "tags": []
     }
   }
 }
