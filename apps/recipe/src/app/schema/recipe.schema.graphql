@@ -12,10 +12,11 @@ enum TimeUnits {
 
 extend type User @key(fields: "userName") {
   userName: String! @external
-  receipes: [Receipe]
+
+  receipes: [Recipe]
 }
 
-type Receipe @key(fields: "id") {
+type Recipe @key(fields: "id") {
   id: ID!
   parent: ID
   createDate: Date!
@@ -45,7 +46,7 @@ type Instruction {
 
 
 extend type Query {
-  receipes(where: JSON, order: JSON, limit: Int, offset:Int): [Receipe]
+  receipes(where: JSON, order: JSON, limit: Int, offset:Int): [Recipe]
 }
 
 input ReceipeInput {
@@ -76,5 +77,5 @@ input InstructionInput {
 }
 
 type Mutation {
-  createRecipe(input: ReceipeInput!) : Receipe
+  createRecipe(input: ReceipeInput!) : Recipe
 }
