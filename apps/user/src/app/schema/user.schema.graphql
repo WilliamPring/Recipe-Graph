@@ -6,7 +6,7 @@ enum ContactType {
   ADDRESS
 }
 
-type User @key(fields: "id") {
+type User @key(fields: "userName") {
   id: ID!
   userName: String!
   contact: [Contact]
@@ -18,7 +18,7 @@ type Contact {
 }
 
 extend type Query {
-  getUser(id: ID!): User
+  getUser(userName: String!): User
   getUsers(where: JSON, order: JSON, limit: Int, offset:Int): [User]
 }
 

@@ -9,12 +9,19 @@ enum TimeUnits {
   MINUTES,
   SECONDS
 }
+
+extend type User @key(fields: "userName") {
+  userName: String! @external
+  receipes: [Receipe]
+}
+
 type Receipe @key(fields: "id") {
   id: ID!
   parent: ID
   createDate: Date!
   lastModifiedDate: Date!
   userName: String!
+  user: User
   url: String
   about: About
   ingredients: [Ingredient]
@@ -34,6 +41,11 @@ type Ingredient {
 type Instruction {
   step: Float!
   description: String!
+}
+
+
+extend type Query {
+  receipes(where: JSON, order: JSON, limit: Int, offset:Int): [Receipe]
 }
 
 input ReceipeInput {

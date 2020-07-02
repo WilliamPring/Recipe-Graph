@@ -41,6 +41,7 @@ export class UserService {
   }
 
   findbyUserName(userName: string): Promise<UserDto> {
-    return this.usersRepository.findOne(userName).then(this.dtoMapper);
+    console.log(userName)
+    return this.usersRepository.findOne({where: {userName}}).then(this.dtoMapper);
   }
 }

@@ -24,6 +24,11 @@ export class RecipeService {
     return this.recipesRepository.save({...createReceipeDto}).then(this.dtoMapper);
   }
 
+  async find(where: {}, order: {}, limit: number, offset: number): Promise<ReceipeDto[]> {
+    return await this.recipesRepository.find({where: {...where}, order: {...order}, take: limit, skip: offset})
+    .then(res => map(res, this.dtoMapper))
+  }
+
   // findOne(id: string): Promise<ReceipeDto> {
   //   return this.usersRepository.findOne(id).then(this.dtoMapper);
   // }

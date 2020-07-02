@@ -8,8 +8,8 @@ export class UserResolvers {
   constructor(private userService: UserService) {}
 
   @Query()
-  getUser(@Args('id') id: string) : Promise<UserDto> {
-    return this.userService.findOne(id);
+  getUser(@Args('userName') userName: string) : Promise<UserDto> {
+    return this.userService.findbyUserName(userName);
   }
 
 
@@ -32,6 +32,7 @@ export class UserResolvers {
 
   @ResolveReference()
   resolveReference(reference: { __typename: string; userName: string }) : Promise<UserDto> {
+    console.log('inside')
     return this.userService.findbyUserName(reference.userName);
   }
 }

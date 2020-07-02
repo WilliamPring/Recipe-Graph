@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GraphQLFederationModule } from '@nestjs/graphql';
 import {GraphQLJSON } from 'graphql-type-json';
-import { Connection } from 'typeorm';
 import {RecipeProvider} from '@recipe-graph/crud-layer'
 import {RecipeResolver} from './resolvers/recipe.resolver'
 import * as config  from 'config'
@@ -15,6 +14,4 @@ import * as config  from 'config'
   ],
   providers: [RecipeResolver]
 })
-export class AppModule {
-  constructor(private connection: Connection) {}
-}
+export class AppModule {}
