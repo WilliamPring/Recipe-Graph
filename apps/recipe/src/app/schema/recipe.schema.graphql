@@ -12,17 +12,16 @@ enum TimeUnits {
 
 extend type User @key(fields: "userName") {
   userName: String! @external
-
   receipes: [Recipe]
 }
 
 type Recipe @key(fields: "id") {
   id: ID!
+  userName: String!
   parent: ID
   createDate: Date!
   lastModifiedDate: Date!
-  userName: String!
-  user: User
+  author: User
   url: String
   about: About
   ingredients: [Ingredient]

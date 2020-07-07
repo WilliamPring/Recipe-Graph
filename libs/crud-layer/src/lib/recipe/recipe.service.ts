@@ -29,6 +29,12 @@ export class RecipeService {
     .then(res => map(res, this.dtoMapper))
   }
 
+
+  findbyUserName(userName: string): Promise<ReceipeDto> {
+    console.log(userName)
+    return this.recipesRepository.findOne({where: {userName}}).then(this.dtoMapper);
+  }
+
   // findOne(id: string): Promise<ReceipeDto> {
   //   return this.usersRepository.findOne(id).then(this.dtoMapper);
   // }

@@ -1,5 +1,5 @@
 
-import { Args, Query, Resolver, ResolveProperty, Mutation, Parent, ResolveField } from '@nestjs/graphql';
+import { Args, Query, Resolver, ResolveProperty, Mutation, Parent, ResolveField, ResolveReference } from '@nestjs/graphql';
 import {RecipeService, UserService} from '@recipe-graph/crud-layer'
 import { CreateReceipeDto, ReceipeDto, UserDto } from '@recipe-graph/transfer-object';
 @Resolver('Recipe')
@@ -22,8 +22,14 @@ export class RecipeResolver {
     return this.recipeService.find(where, order, limit, offset)
   }
 
-  @ResolveField()
-  user(@Parent() receipe: ReceipeDto) {
+  @ResolveReference()
+  resolveReference(reference: { __typename: string; userName: string }) : Promise<ReceipeDto> {
+    console.log('inside')
+    return this.recipeService.findbyUserName(reference.userName);
+  }
+
+  @ResolveProperty('author')
+  getUser(@Parent() receipe: ReceipeDto) {
     console.log("test")
    // return this.userService.findbyUserName(receipe.userName);
     return { __typename: 'User', userName: receipe.userName };
